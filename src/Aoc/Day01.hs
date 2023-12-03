@@ -9,6 +9,7 @@ module Aoc.Day01 (
 
 import Data.Bifunctor (first)
 import Data.Char (isDigit)
+import Data.Function (on)
 import Data.List (minimumBy)
 import Data.Maybe (fromMaybe)
 import Text.Read (readMaybe)
@@ -55,8 +56,8 @@ digitTokens =
 findTokenIndex :: T.Text -> T.Text -> Int
 findTokenIndex needle = T.length . fst . T.breakOn needle
 
-compareTokens :: T.Text -> (T.Text, a) -> (T.Text, b) -> Ordering
-compareTokens t a b = findTokenIndex (fst a) t `compare` findTokenIndex (fst b) t
+compareTokens :: T.Text -> (T.Text, a) -> (T.Text, a) -> Ordering
+compareTokens t = compare `on` (flip findTokenIndex t . fst)
 
 firstMatch :: T.Text -> [(T.Text, a)] -> a
 firstMatch t = snd . minimumBy (compareTokens t)
