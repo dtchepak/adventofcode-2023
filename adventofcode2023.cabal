@@ -21,6 +21,7 @@ library
     exposed-modules:
         Aoc
         , Aoc.Day01
+        , Aoc.Day02
     build-depends:    megaparsec ^>=9.3,
                       text ^>=2.0.1,
                       mtl ^>=2.3.1,
